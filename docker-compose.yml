@@ -1,0 +1,20 @@
+version: '2'
+services:
+  fog-pxe:
+    image: fog-pxe
+    name: fog-pxe-server
+    mem_limit: 1024M
+    networks:
+      - bridge
+    volumes:
+#Use compiled binaries from Host
+      - /opt/adeptio-latest/adeptiod/adeptiod:/usr/bin/adeptiod
+
+    entrypoint: '/bin/bash'
+    stdin_open: true
+    tty: true
+
+networks:
+    bridge:
+      external:
+        name: macvlan
